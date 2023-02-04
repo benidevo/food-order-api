@@ -31,11 +31,5 @@ isort-diff:
 isort:
 	docker-compose -f docker/dev/docker-compose.yml exec api isort . --skip /app/env --skip /app/venv
 
-type-check:
-	docker-compose -f docker/dev/docker-compose.yml exec api mypy .
-
-install-types:
-	docker-compose -f docker/dev/docker-compose.yml exec api mypy --install-types
-
 test:
 	docker-compose -f docker/dev/docker-compose.yml exec api pytest --disable-warnings .

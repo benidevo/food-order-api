@@ -1,10 +1,13 @@
 import json
 
+from celery import shared_task
+
 from app.core.resources.cache import redis_cache
 from app.core.resources.nourish_me_api import requests
 from app.core.utils import MENU_URL, PLACE_ORDERS_URL
 
 
+@shared_task
 def process_order(order_id):
 
     cache = redis_cache()
@@ -40,6 +43,8 @@ def process_order(order_id):
 
         orders.append(order)
 
-    response = requests.post(PLACE_ORDERS_URL, json={"orders": json.dumps(orders)})
+    data = json.dumps({"orders": orders})
+
+    response = requests.post(PLACE_ORDERS_URL, json=data)
     cache.delete(order_id)
     return response

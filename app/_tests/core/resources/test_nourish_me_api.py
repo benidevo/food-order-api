@@ -1,3 +1,5 @@
+import json
+
 import pytest
 
 from app.core.resources.nourish_me_api import requests
@@ -28,41 +30,45 @@ def test_get_menu(url, data):
     [
         pytest.param(
             PLACE_ORDERS_URL,
-            {
-                "orders": [
-                    {
-                        "customer": {
-                            "name": "John Doe",
-                            "address": {
-                                "street": "123 Main St",
-                                "city": "New York",
-                                "postal_code": "10001",
+            json.dumps(
+                {
+                    "orders": [
+                        {
+                            "customer": {
+                                "name": "John Doe",
+                                "address": {
+                                    "street": "123 Main St",
+                                    "city": "New York",
+                                    "postal_code": "10001",
+                                },
                             },
-                        },
-                        "items": [{"id": 1, "amount": 1}],
-                    }
-                ]
-            },
+                            "items": [{"id": 1, "amount": 1}],
+                        }
+                    ]
+                }
+            ),
             {"status": "success", "message": "Order created successfully"},
             id="valid-order",
         ),
         pytest.param(
             MENU_URL,
-            {
-                "orders": [
-                    {
-                        "customer": {
-                            "name": "John Doe",
-                            "address": {
-                                "street": "123 Main St",
-                                "city": "New York",
-                                "postal_code": "10001",
+            json.dumps(
+                {
+                    "orders": [
+                        {
+                            "customer": {
+                                "name": "John Doe",
+                                "address": {
+                                    "street": "123 Main St",
+                                    "city": "New York",
+                                    "postal_code": "10001",
+                                },
                             },
-                        },
-                        "items": [{"id": 1, "amount": 1}],
-                    }
-                ]
-            },
+                            "items": [{"id": 1, "amount": 1}],
+                        }
+                    ]
+                }
+            ),
             None,
             id="invalid-order-url",
         ),

@@ -16,7 +16,7 @@ class RequestsMock:
     def post(self, url, json):
         if url == PLACE_ORDERS_URL:
             try:
-                NourishMeApiSchema(many=True).dump(json)
+                NourishMeApiSchema().loads(json)
             except Exception as e:
                 return {"status": "error", "message": str(e)}
             return {"status": "success", "message": "Order created successfully"}

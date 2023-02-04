@@ -63,12 +63,7 @@ class App:
         )
         celery.conf.update(self.app.config)
 
-        class ContextTask(celery.Task):
-            def __call__(self, *args, **kwargs):
-                with self.app.app_context():
-                    return self.run(*args, **kwargs)
-
-        celery.Task = ContextTask
+        celery.set_default()
         return celery
 
 

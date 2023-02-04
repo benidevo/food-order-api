@@ -27,6 +27,7 @@ def validate_file(data):
 
     if not data or not data.get("order", None):
         result.update({"message": "No file uploaded", "status": False})
+        return result
     _file = data.get("order")
 
     if _file.content_type != "application/xml":

@@ -16,4 +16,5 @@ class FoodOrderService(BaseService):
         order = xmltodict.parse(file_data)
         order_id = f"order_{generate_temp_id()}"
         self.cache.set(order_id, order)
-        process_order(order_id)
+
+        process_order.delay(order_id)

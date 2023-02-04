@@ -19,7 +19,7 @@ services:
   celery:
     <<: *api
     command: >
-      sh -c "celery -A app.api.main:celery worker -l INFO"
+      sh -c "celery -A app.api.main:celery worker -l INFO -E"
     ports: []
     depends_on:
       - api

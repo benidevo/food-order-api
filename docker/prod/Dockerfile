@@ -9,9 +9,9 @@ RUN apt-get update
 RUN apt-get -y --no-install-recommends install netcat build-essential cargo libpq-dev
 
 RUN pip install --upgrade pip
-COPY ./requirements .
-RUN pip install -r requirements/prod.txt
+COPY ./requirements ./requirements
+RUN pip install -r ./requirements/prod.txt
 
 COPY . .
 
-CMD ["sh", "/app/entrypoint.sh"]
+CMD ["sh", "/app/docker/entrypoint.sh"]

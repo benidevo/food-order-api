@@ -2,9 +2,13 @@
 
 [![Black Code Style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
+- [Link to API Documentation](https://documenter.getpostman.com/view/15138887/2s935oKijy)
+
+![Screenshot](doc.png?raw=true "API DOC")
+
 ## Overview
 
-Food Order API is a single endpoint for placing bulk orders to the [nourish.me](https://nourish.me) API. This project was built using Python, Flask, Redis, Celery, Docker, and Docker Compose.
+Food Order API is a single endpoint for placing bulk orders to [nourish.me](https://nourish.me) API, a mock api.
 
 ## Prerequisites
 
