@@ -14,14 +14,13 @@ if [ -z ${REDIS_SERVER} ]; then
 export REDIS_SERVER="redis"
 fi
 
-# # wait for redis
-# echo "Waiting for redis..."
-# while ! nc -z $REDIS_SERVER 5432; do
-#   sleep 0.1
-# done
+# wait for redis
+echo "Waiting for redis..."
+while ! nc -z $REDIS_SERVER 6379; do
+  sleep 0.1
+done
 
 export FLASK_APP=app.api.main:app
-echo "Initializing DB..."
 
 status=$?
 if [ $status -eq 0 ]; then

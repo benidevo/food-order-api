@@ -1,7 +1,7 @@
 version: '3.8'
 
 services:
-  api:
+  api: &api
     build:
       context: ../../
       dockerfile: docker/dev/Dockerfile
@@ -11,6 +11,28 @@ services:
       - 8000:8000
     env_file:
       - ../../.env
+    depends_on:
+      - redis
+    networks:
+      - food-api
+
+  celery:
+    <<: *api
+    command: >
+      sh -c "celery -A app.api.main:celery worker -l INFO"
+    ports: []
+    depends_on:
+      - api
+      - redis
+    networks:
+      - food-api
+
+  redis:
+    image: redis:7.0.0-alpine
+    container_name: food-api-redis
+    restart: always
+    volumes:
+      - redis-data:/data
     networks:
       - food-api
 
@@ -20,4 +42,4 @@ networks:
       bridge
 
 volumes:
-  db-data:
+  redis-data:

@@ -1,5 +1,6 @@
 import logging
 
+from celery import Celery
 from flask import Flask, json
 from flask_cors import CORS
 from marshmallow.exceptions import ValidationError
@@ -35,6 +36,7 @@ class App:
 
         CORS(self.app)
         self.set_routes()
+        self.celery()
 
         return self.app
 
@@ -49,10 +51,27 @@ class App:
     def get_app(self):
         return self.app
 
+    def celery(self):
+        celery = Celery(
+            self.app.import_name,
+            backend=config.CELERY_RESULT_BACKEND,
+            broker=config.CELERY_BROKER_URL,
+        )
+        celery.conf.update(self.app.config)
+
+        class ContextTask(celery.Task):
+            def __call__(self, *args, **kwargs):
+                with self.app.app_context():
+                    return self.run(*args, **kwargs)
+
+        celery.Task = ContextTask
+        return celery
+
 
 # =============================================================================
 
 app = App().build_app()
+celery = App().celery()
 
 # =============================================================================
 @app.errorhandler(AppError)
