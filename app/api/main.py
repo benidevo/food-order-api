@@ -3,10 +3,12 @@ import logging
 from celery import Celery
 from flask import Flask, json
 from flask_cors import CORS
+from flask_restful import Api
 from marshmallow.exceptions import ValidationError
 from werkzeug.wrappers import Response
 
 import app.core.settings as config
+from app.api.orders.routes import init_api_routes
 from app.core.error_handlers import AppError
 
 
@@ -41,6 +43,8 @@ class App:
         return self.app
 
     def set_routes(self):
+        api = Api(self.app)
+        init_api_routes(api)
         self.set_home_route()
 
     def set_home_route(self):

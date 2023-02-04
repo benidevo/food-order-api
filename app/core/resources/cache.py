@@ -1,8 +1,9 @@
 import json
 from functools import lru_cache
 
-import core.settings as config
 import redis
+
+import app.core.settings as config
 
 
 class Cache:

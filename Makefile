@@ -38,4 +38,4 @@ install-types:
 	docker-compose -f docker/dev/docker-compose.yml exec api mypy --install-types
 
 test:
-	docker-compose -f docker/dev/docker-compose.yml exec api pytest .
+	docker-compose -f docker/dev/docker-compose.yml exec api pytest --disable-warnings .

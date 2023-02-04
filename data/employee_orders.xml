@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Employees>
+    <Employee>
+        <Name>Max Mustermann</Name>
+        <Address>
+            <Street>Musterweg 3</Street>
+            <City>Musterhausen</City>
+            <PostalCode>12345</PostalCode>
+        </Address>
+        <IsAttending>true</IsAttending>
+        <Order>3x Pizza Quattro Formaggi</Order>
+    </Employee>
+    <Employee>
+        <Name>Anna Nym</Name>
+        <Address>
+            <Street>Anonymous 4</Street>
+            <City>Anon City</City>
+            <PostalCode>55555</PostalCode>
+        </Address>
+        <IsAttending>false</IsAttending>
+        <Order>1x Caesar Salad</Order>
+    </Employee>
+    <Employee>
+        <Name>Al Gore-Rhythm</Name>
+        <Address>
+            <Street>Fake Street 7</Street>
+            <City>Downtown</City>
+            <PostalCode>54321</PostalCode>
+        </Address>
+        <IsAttending>true</IsAttending>
+        <Order>1x Kebap</Order>
+    </Employee>
+    <Employee>
+        <Name>Arielle Hassle</Name>
+        <Address>
+            <Street>Hard Road 13</Street>
+            <City>Old York</City>
+            <PostalCode>98765</PostalCode>
+        </Address>
+        <IsAttending>true</IsAttending>
+        <Order>1x Fried Chicken, 1x Caesar Salad</Order>
+    </Employee>
+</Employees>

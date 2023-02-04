@@ -1,5 +1,6 @@
 import pytest
-from core.resources.cache import redis_cache
+
+from app.core.resources.cache import redis_cache
 
 
 def test_cache():
